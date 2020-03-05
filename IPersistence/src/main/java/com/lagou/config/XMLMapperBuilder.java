@@ -21,8 +21,18 @@ public class XMLMapperBuilder {
         Document document = new SAXReader().read(inputStream);
         Element rootElement = document.getRootElement();
         String namespace = rootElement.attributeValue("namespace");
-        List<Element> select = rootElement.selectNodes("select");
-        for (Element element : select) {
+        List<Element> selectList = rootElement.selectNodes("//select");
+        Elementforeach(selectList,namespace);
+        List<Element> insertList = rootElement.selectNodes("//insert");
+        Elementforeach(insertList,namespace);
+        List<Element> updateList = rootElement.selectNodes("//update");
+        Elementforeach(updateList,namespace);
+        List<Element> deleteList = rootElement.selectNodes("//delete");
+        Elementforeach(deleteList,namespace);
+    }
+
+    public void Elementforeach(List<Element> list, String namespace){
+        for (Element element : list) {
             String id = element.attributeValue("id");
             String paramterType = element.attributeValue("paramterType");
             String resultType = element.attributeValue("resultType");

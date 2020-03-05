@@ -37,7 +37,9 @@ public class IPersistenceTest {
         //查询单个
         User user = new User();
         user.setId(1);
-        user.setUsername("老王");
+        user.setUsername("lucy");
+        user.setBirthday("2019-12-12");
+        user.setPassword("123");
         User byCondition = iUserDao.findByCondition(user);
         System.out.println("-----查询单个结果------1");
         System.out.println(byCondition);
@@ -52,9 +54,16 @@ public class IPersistenceTest {
 
         User user1 = new User();
         user1.setId(5);
-        user1.setUsername("lucy");
-        iUserDao.insertData(user1);
-        System.out.println("-----插入成功-----");
+        user1.setUsername("张三");
+        user1.setPassword("123");
+        user1.setBirthday("1989-09-29");
+        int i = iUserDao.insertData(user1);
+        if(i==1){
+            System.out.println("-----插入成功-----"+i);
+        }else {
+            System.out.println("-----插入失败-----"+i);
+        }
+
     }
 
     @Test //更新
@@ -65,10 +74,16 @@ public class IPersistenceTest {
         IUserDao iUserDao = sqlSession.getMapper(IUserDao.class);
 
         User user1 = new User();
-        user1.setId(4);
+        user1.setId(5);
         user1.setUsername("Tom");
-        iUserDao.updateData(user1);
-        System.out.println("-----更新成功-----");
+        user1.setPassword("456");
+        int i = iUserDao.updateData(user1);
+        if(i==1){
+            System.out.println("-----更新成功-----"+i);
+        }else{
+            System.out.println("-----更新失败-----"+i);
+        }
+
     }
 
     @Test  //删除
@@ -79,10 +94,15 @@ public class IPersistenceTest {
         IUserDao iUserDao = sqlSession.getMapper(IUserDao.class);
 
         User user1 = new User();
-        user1.setId(4);
-        user1.setUsername("lucy");
-        iUserDao.deleteData(user1);
-        System.out.println("-----删除成功-----");
+        user1.setId(5);
+        //user1.setUsername("Tom");
+        int i = iUserDao.deleteData(user1);
+        if(i==1){
+            System.out.println("-----删除成功-----"+i);
+        }else{
+            System.out.println("-----删除失败-----"+i);
+        }
+
     }
 
 }

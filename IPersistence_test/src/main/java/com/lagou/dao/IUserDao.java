@@ -12,11 +12,11 @@ public interface IUserDao {
     public User findByCondition(User user);
 
     //新增
-    public void insertData(User user);
+    public int insertData(User user);
 
     //修改
-    public void updateData(User user);
+    public int updateData(User user);
 
     //删除
-    public void deleteData(User user);
+    public int deleteData(User user);
 }

@@ -7,10 +7,10 @@
         select * from user where id = #{id} and username = #{username}
     </select>
     <insert id="insertData" paramterType="com.lagou.pojo.User" resultType="com.lagou.pojo.User">
-        insert into user (id,username) values (#{id}, #{username})
+        insert into user(id,username,password,birthday) values(#{id}, #{username},#{password},#{birthday})
     </insert>
     <update id="updateData" paramterType="com.lagou.pojo.User" resultType="com.lagou.pojo.User">
-        UPDATE user set id=#{id},username=#{username} where id = #{id}
+        UPDATE user set id=#{id},username=#{username},password=#{password},birthday=#{birthday} where id = #{id}
     </update>
     <delete id="deleteData" paramterType="com.lagou.pojo.User">
         delete from user where id=#{id}

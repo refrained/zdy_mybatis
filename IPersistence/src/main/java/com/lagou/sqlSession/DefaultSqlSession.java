@@ -32,6 +32,33 @@ public class DefaultSqlSession implements SqlSession{
     }
 
     @Override
+    public int insertData(String statementid, Object... params) throws Exception {
+        //完成对SimpleExecutor中insert方法的调用
+        MappedStatement mappedStatement = configuration.getMappedStatementMap().get(statementid);
+        SimpleExecutor simpleExecutor = new SimpleExecutor();
+        int i = simpleExecutor.insert(configuration,mappedStatement,params);
+        return i;
+    }
+
+    @Override
+    public int updateData(String statementid, Object... params) throws Exception {
+        //完成对SimpleExecutor中update方法的调用
+        MappedStatement mappedStatement = configuration.getMappedStatementMap().get(statementid);
+        SimpleExecutor simpleExecutor = new SimpleExecutor();
+        int i = simpleExecutor.update(configuration,mappedStatement,params);
+        return i;
+    }
+
+    @Override
+    public int deleteData(String statementid, Object... params) throws Exception {
+        //完成对SimpleExecutor中delete方法的调用
+        MappedStatement mappedStatement = configuration.getMappedStatementMap().get(statementid);
+        SimpleExecutor simpleExecutor = new SimpleExecutor();
+        int i = simpleExecutor.delete(configuration,mappedStatement,params);
+        return i;
+    }
+
+    @Override
     public <T> T getMapper(Class<?> mapperClass) {
         // 使用JDK动态代理来为Dao接口生成代理对象，并返回
 
@@ -54,6 +81,17 @@ public class DefaultSqlSession implements SqlSession{
                     List<Object> objects = selectList(statementId, args);
                     return objects;
                 }
+                MappedStatement mappedStatement = configuration.getMappedStatementMap().get(statementId);
+                String sql = mappedStatement.getSql();
+                if(sql.startsWith("insert")||sql.startsWith("INSERT")){
+                    return insertData(statementId,args);
+                }
+                if(sql.startsWith("update")||sql.startsWith("UPDATE")){
+                    return updateData(statementId,args);
+                }
+                if(sql.startsWith("delete")||sql.startsWith("DELETE")){
+                    return deleteData(statementId,args);
+                }
 
                 return selectOne(statementId,args);
 
@@ -63,10 +101,4 @@ public class DefaultSqlSession implements SqlSession{
         return (T) proxyInstance;
     }
 
-<<<<<<< HEAD
-=======
-
-    //处理器对象
-//    private Executor simpleExecutor = new SimpleExecutor();
->>>>>>> 58c8a5e031e9f759dde218f4da80958aa46be805
 }

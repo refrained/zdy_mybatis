@@ -2,7 +2,10 @@
 
     <!--数据库连接信息-->
     <dataSource>
-        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>
+        <!--MySql 8.0-->
+<!--        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>-->
+        <!--MySql 5.7-->
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test?characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8"></property>
         <property name="username" value="root"></property>
         <property name="password" value="root"></property>
