@@ -22,11 +22,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.17</version>
         </dependency>-->
-<<<<<<< HEAD
-        <!--mysql驱动坐标111-->
-=======
-        <!--mysql驱动坐标-->
->>>>>>> 58c8a5e031e9f759dde218f4da80958aa46be805
+        <!--mysql驱动坐标123-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
